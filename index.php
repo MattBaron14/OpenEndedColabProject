@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<?php include 'server.php'; ?>
 <script src="script.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css">
 <html>
@@ -12,6 +11,12 @@
 
 <map name="wildernessmap">
     <area class="honey" shape="rect" coords="150,525,325,775" href="javascript:growl.play()"  />
+
 </map>
+<form method="POST">
+	<input type="text" name="contents">
+	<input type="submit" name="post" id="postbutton" value="Post"/>
+</form>
+<?php include 'server.php'; ?>
 </body>
 </html>
