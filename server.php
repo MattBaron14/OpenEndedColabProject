@@ -12,7 +12,7 @@ function printfile(){
 }
 function postfun(){
 	$file = fopen('file.txt', 'a');
-	fwrite($file, ((string)$_POST["contents"]) . "<br>");
+	fwrite($file, ("<div class='box'>" . (string)$_POST["contents"]) . "</div><br>");
 	fclose($file);
 	ob_end_clean();
 	printfile();
