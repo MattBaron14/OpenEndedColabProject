@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+	body{
+		background-image:url("back.jpg");
+	}
+    	* { padding: 0; margin: 0; }
+    	canvas { background: #eee; display: block; margin: 0 auto; }
+    </style>
+</head>h
+<body>
+
+<canvas id="myCanvas" width="480" height="320"></canvas>
+
+http://www.playfuljs.com/a-first-person-engine-in-265-lines/
+
+<script>
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+var binmap = [
+	[0,0,0,0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0,0,0,0],
+	[0,0,1,1,1,1,1,1,1,1,1,0,0],
+	[0,0,1,0,0,0,0,0,0,0,1,0,0],
+	[0,0,1,0,0,0,0,0,0,0,1,0,0],
+	[0,0,1,0,0,0,0,0,0,0,1,0,0],
+	[0,0,1,0,0,0,0,0,0,0,1,0,0],
+	[0,0,1,0,0,0,0,0,0,0,1,0,0],
+	[0,0,1,0,0,0,0,0,0,0,1,0,0],
+	[0,0,1,1,1,1,0,1,1,1,1,0,0],
+	[0,0,0,0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0,0,0,0]
+];
+var x = 75;
+var y = 5;
+var xint = 0;
+var yint = 0;
+var angle = Math.PIi/2;
+var ylength = binmap.length * 10;
+var xlength = binmap[0].length * 10;
+
+for(var a = angle - (Math.PI/4), var rect = 0; a < angle + (Math.PI/4); a += (Math.PI/320), rect += 3){
+	for(var dist = 0; intersect && dist < 50; var dist += .1){
+	       	xint = dist * Math.cos(angle);
+		yint = dist * Math.sin(angle);
+		xint += x;
+		yint += y;
+		if (y < 0 || x < 0){dist = 51;}
+	       	else{
+			binx = (int) xint;
+			biny = (int) yint;
+			if (binmap[binx][ylength - biny] === 1){
+				var ratio = 10/(dist * tan(45));
+				ctx.beginPath();
+				ctx.rect(rect, canvas.height - (canvas.height * ratio), (rect + 3), canvas.height);
+				ctx.fillStyle = "#0095DD";
+				ctx.fill();
+				ctx.closePath;
+			}
+		}
+//setInterval(draw,10);
+</script>
+</body>
+</html>
