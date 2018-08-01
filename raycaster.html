@@ -15,12 +15,13 @@
 
 <canvas id="myCanvas" width="480" height="320"></canvas>
 
-http://www.playfuljs.com/a-first-person-engine-in-265-lines/
-
 <script>
-
+//create canvas as context to be interfaced with by javascript
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
+//map to be used. 1's are walls, 0's are empty. each element is its own 10 x 10 grid. walls are 10x10x10
+
+
 var binmap = [
 	[0,0,0,0,0,0,0,0,0,0,0,0,0],
 	[0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -36,33 +37,46 @@ var binmap = [
 	[0,0,0,0,0,0,0,0,0,0,0,0,0],
 	[0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
+//starting position
 var x = 75;
 var y = 5;
+//initialize the intecept variables
 var xint = 0;
 var yint = 0;
+//angle facing
 var angle = Math.PIi/2;
+//length of both x and y dimmensions of the grid
 var ylength = binmap.length * 10;
 var xlength = binmap[0].length * 10;
-
+//scan along a 90 degrees
 for(var a = angle - (Math.PI/4), var rect = 0; a < angle + (Math.PI/4); a += (Math.PI/320), rect += 3){
-	for(var dist = 0; intersect && dist < 50; var dist += .1){
-	       	xint = dist * Math.cos(angle);
+  //check distance at increments to see if there is an intersection with a wall
+  for(var dist = 0; intersect && dist < 50; var dist += .1){
+    //convert polar to cartesian
+    xint = dist * Math.cos(angle);
 		yint = dist * Math.sin(angle);
-		xint += x;
+    //find in relation to positiio
+    xint += x;
 		yint += y;
-		if (y < 0 || x < 0){dist = 51;}
-	       	else{
-			binx = (int) xint;
-			biny = (int) yint;
-			if (binmap[binx][ylength - biny] === 1){
-				var ratio = 10/(dist * tan(45));
+    //break from loop if below 0
+    if (y < 0 || x < 0){
+      dist = 51;
+    }
+	  else{
+      //truncate to an integer
+      var binx = (int) xint;
+			var biny = (int) yint;
+    }
+    //if the grid holds a 1, draw a rectangle
+    if (binmap[binx][ylength - biny] === 1){
+		    var ratio = 10/(dist * tan(45));
 				ctx.beginPath();
 				ctx.rect(rect, canvas.height - (canvas.height * ratio), (rect + 3), canvas.height);
 				ctx.fillStyle = "#0095DD";
 				ctx.fill();
 				ctx.closePath;
 			}
-		}
+	}
 //setInterval(draw,10);
 </script>
 </body>
