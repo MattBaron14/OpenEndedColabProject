@@ -31,7 +31,7 @@
 <img src="wilderness.jpg" alt="wilderness" usemap="#wildernessmap"/>
 
 <map name="wildernessmap">
-    <area class="honey" shape="rect" coords="150,525,325,775" href="raycaster.html"  />
+    <area class="honey" shape="rect" coords="150,525,325,775" href="Mouse.html"  />
 
 </map>
 <form method="POST">
