@@ -21,6 +21,7 @@
 <canvas id="myCanvas" width="100px" height="100px"></canvas>
 
 <script>
+var open = true;
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
@@ -42,15 +43,15 @@ function collision(){
 			ctx.clearRect(0,0,canvas.width,canvas.height);
 		}
 		else if (mousex < x + 50){ 
-			x-= 20;
+			x+= 20;
 			ctx.clearRect(0,0,canvas.width,canvas.height);
 		}
 		if (mousey > y + 20){ 
-			y -= 20;
+			x += 20;
 			ctx.clearRect(0,0,canvas.width,canvas.height);
 		}
 		else if (mousey < x - 20){ 
-			y  += 20;
+			x += 20;
 			ctx.clearRect(0,0,canvas.width,canvas.height);
 		}
 
@@ -65,12 +66,13 @@ function draw(){
 function interval(){
 	collision();
 	draw();
-	if (x > canvas.width){
+	if (x > canvas.width - 20 && open){
 		window.location = "raycaster.html";
+		open = false;
 	}
 }
 canvas.addEventListener("mousemove", getMouse, false);
-window.setInterval(interval, 10);
+window.setInterval(interval, 100);
 </script>
 </body>
 </html>
